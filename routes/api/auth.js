@@ -15,4 +15,12 @@ router.post("/logout", authentication, control.logout);
 
 router.patch( "/avatars", authentication, upload.single("avatar"), control.updateAvatar);
 
+router.get("/verify/:verificationToken", control.verifyEmail);
+
+router.post(
+  "/verify",
+  validator(schemas.emailVerificationSchema),
+  control.resendEmail
+);
+
 module.exports = router;
